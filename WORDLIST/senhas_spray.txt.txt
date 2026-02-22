@@ -1,0 +1,6 @@
+password
+Welcome123
+msfadmin
+admin
+root
+master

